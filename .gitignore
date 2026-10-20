@@ -1,0 +1,34 @@
+# Maven
+protogsm-api/target/
+
+# Local MariaDB files
+protogsm-database/data/
+
+# Client
+protogsm-client/node_modules/
+protogsm-client/dist/
+protogsm-client/build/
+protogsm-client/.next/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+.sts4-cache/
+
+# Local env overrides
+.env
+.env.*
+!.env.example

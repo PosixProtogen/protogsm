@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>STOMP + SockJS Test</title>
+</head>
+<body>
+  <h3>STOMP + SockJS test</h3>
+  <div>
+    <label>Server ID: <input id="serverId" value="1"/></label>
+    <button id="connectBtn">Connect</button>
+    <button id="disconnectBtn">Disconnect</button>
+  </div>
+
+  <div>
+    <textarea id="log" cols="80" rows="12" readonly></textarea>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+  <script>
+    let stompClient = null;
+
+    function log(msg) {
+      const ta = document.getElementById('log');
+      ta.value = (new Date().toLocaleTimeString()) + ' - ' + msg + '\n' + ta.value;
+    }
+
+    document.getElementById('connectBtn').addEventListener('click', function () {
+      const id = document.getElementById('serverId').value || '1';
+
+      // cria conexão SockJS com seu endpoint /ws
+      const socket = new SockJS('http://localhost:8080/ws'); // se app em contexto diferente, incluir prefixo: /protosystemintegrator/ws
+      stompClient = Stomp.over(socket);
+
+      // opcional: desabilitar console debug
+      stompClient.debug = null;
+
+      stompClient.connect({}, function (frame) {
+        log('Connected: ' + frame);
+
+        // subscribe para um tópico específico do server
+        const dest = '/topic/steamcmd/' + id;
+        stompClient.subscribe(dest, function (message) {
+          log('Received on ' + dest + ': ' + message.body);
+        });
+
+        // opcional: subscribe para tópico geral
+        stompClient.subscribe('/topic/steamcmd', function (message) {
+          log('Received on /topic/steamcmd: ' + message.body);
+        });
+      }, function (err) {
+        log('Connect error: ' + JSON.stringify(err));
+      });
+    });
+
+    document.getElementById('disconnectBtn').addEventListener('click', function () {
+      if (stompClient !== null) {
+        stompClient.disconnect(function () {
+          log('Disconnected');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

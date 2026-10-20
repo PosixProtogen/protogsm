@@ -1,0 +1,20 @@
+services:
+  mariadb:
+    image: mariadb:11.8
+    container_name: protogsm-mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: change-me
+      MARIADB_DATABASE: protosystemintegrator
+      MARIADB_USER: protogsmdb
+      MARIADB_PASSWORD: change-me
+    volumes:
+      - ./data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
