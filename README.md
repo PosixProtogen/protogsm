@@ -9,7 +9,7 @@ The name comes from Protogen Game Server Manager. The idea is to create, start, 
 | Folder | What it is |
 |---|---|
 | `protogsm-api/` | The Spring Boot API. Login, CRUD, and the game-server model are here. |
-| `protogsm-client/` | The Vue app, when it exists. Empty for now. |
+| `protogsm-client/` | The Vue app, when it exists. See `protogsm-client/TODO.md`. |
 | `protogsm-database/` | MariaDB on this machine, with the data files. |
 
 ## Docs
