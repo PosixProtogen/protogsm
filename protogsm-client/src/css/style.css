@@ -1,0 +1,7 @@
+/*
+ * Client stylesheet. cht-base loads it after its own styles, so rules here win
+ * over base rules of equal specificity and over Tailwind utilities.
+ *
+ * Plain CSS only: do not add `@import "tailwindcss"` or `@source`; cht-base
+ * already builds Tailwind with this client's classes.
+ */
