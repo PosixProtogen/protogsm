@@ -1,0 +1,7 @@
+/*
+ * Optional. Loaded after cht-base/src/css/style.css for the active CLIENT.
+ * Rename stays `override.css`. Delete this file if the client does not need it.
+ *
+ * Typical use: restyle shared classes such as `.hover-ring` without forking
+ * design-system components.
+ */

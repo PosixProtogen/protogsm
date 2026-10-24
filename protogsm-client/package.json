@@ -1,0 +1,15 @@
+{
+  "name": "cht-client-protogsm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Protogsm client: pages consumed by cht-base via the @client alias.",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@vue/tsconfig": "^0.8.1",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4"
+  }
+}
